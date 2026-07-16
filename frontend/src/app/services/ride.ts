@@ -14,4 +14,12 @@ export class RideService {
   createRide(ride: Ride): Observable<Ride> {
     return this.http.post<Ride>(this.apiUrl, ride)
   }
+
+  getAvailableRides(): Observable<Ride[]> {
+    return this.http.get<Ride[]>(this.apiUrl + '/available');
+  }
+
+  acceptRide(rideId: number, driverId: number): Observable<Ride> {
+    return this.http.put<Ride>(`${this.apiUrl}/${rideId}/accept?driverId=${driverId}`);
+  }
 }

@@ -18,16 +18,32 @@ export class DriverComponent {
   activeRide: Ride | null = null;
 
   getAvailableRides(): void {
-    this.availableRides = [
-      {id: 10, userId: 3, passageiroId: 1, origem: 'Rua A', destino: 'Rua B', status: 'SOLICITADO'}
-    ];
-  }
+    this.rideService.getAvailableRides().subscribe({
+      next: (rides) => {
+        this.availableRides = rides;
+        console.log('Corridas disponíveis carregadas:', rides);
+      },
+      error: (error) => {
+        console.error('Erro ao buscar corridas disponíveis:', error);
+      }
+    });
+  };
 
   ngOnInit(): void {
     this.getAvailableRides();
   }
 
   acceptRide(rideId: number): void {
-    console.log(`Motorista ${this.motoristaId} aceitou a corrida ${rideId}`);
+    this.rideService.acceptRide(rideId, this.motoristaId).subscribe({
+      next: (updatedRide) => {
+        this.activeRide = updatedRide;
+        this.availableRides = this.availableRides.filter(r => r.id !== rideId);
+        console.log('Corrida aceita com sucesso:', updatedRide);
+      },
+      error: (err) => {
+        console.error('Erro ao aceitar corrida:', err);
+        alert('Não foi possível aceitar esta corrida no momento.');
+      }
+    });
   }
 }
