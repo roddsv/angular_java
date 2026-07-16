@@ -13,7 +13,7 @@ export class PassengerComponent {
   origem: string = '';
   destino: string = '';
 
-  rideStatus: string = '';
+  rideStatus: string = 'NENHUMA';
   lastOrigem: string = '';
   lastDestino: string = ';'
 
