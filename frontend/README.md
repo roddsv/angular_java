@@ -23,7 +23,7 @@ Este é o frontend da aplicação **PGE-Ride**, uma plataforma reativa desenvolv
 
 ## 🌐 Integração, Proxy e Portas
 
-Para evitar restrições de **CORS** (Cross-Origin Resource Sharing) durante o desenvolvimento, o servidor de desenvolvimento do Angular utiliza um arquivo de proxy (`proxy.conf.json`).
+Para evitar restrições de **CORS** (Cross-origem Resource Sharing) durante o desenvolvimento, o servidor de desenvolvimento do Angular utiliza um arquivo de proxy (`proxy.conf.json`).
 
 *   **Porta do Frontend:** `http://localhost:4200`
 *   **Porta de Destino (Gateway):** `http://localhost:8080`
@@ -38,12 +38,12 @@ Como desenvolvedor, você pode acompanhar a transmissão assíncrona de eventos 
 1.  **Postagem de Corrida:**
     *   Ao clicar em "Solicitar Corrida", o console disparará:
         ```text
-        Corrida criada com sucesso no backend: { id: 12, origin: '...', destination: '...', status: 'SOLICITADO' }
+        Corrida criada com sucesso no backend: { id: 12, origem: '...', destino: '...', status: 'SOLICITADO' }
         ```
 2.  **Aceitação no Motorista:**
     *   Ao aceitar a corrida no painel do motorista, o console exibirá:
         ```text
-        Corrida aceita com sucesso: { id: 12, origin: '...', destination: '...', status: 'ACEITO', driverId: 3 }
+        Corrida aceita com sucesso: { id: 12, origem: '...', destino: '...', status: 'ACEITO', driverId: 3 }
         ```
 3.  **Transmissão de Atualização via SSE (Server-Sent Events):**
     *   Assim que a escuta de canais em tempo real estiver ativa, o console do passageiro imprimirá o recebimento instantâneo da mensagem enviada pelo servidor:

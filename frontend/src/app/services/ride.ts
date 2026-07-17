@@ -19,7 +19,7 @@ export class RideService {
     return this.http.get<Ride[]>(this.apiUrl + '/available');
   }
 
-  acceptRide(rideId: number, driverId: number): Observable<Ride> {
-    return this.http.put<Ride>(`${this.apiUrl}/${rideId}/accept?driverId=${driverId}`);
+  acceptRide(rideId: number, motoristaId: number): Observable<Ride> {
+    return this.http.put<Ride>(`${this.apiUrl}/${rideId}/accept?motoristaId=${motoristaId}`, null);
   }
 }
