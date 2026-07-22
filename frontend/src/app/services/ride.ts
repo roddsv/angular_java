@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Ride } from '../models/ride';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,9 @@ export class RideService {
   }
 
   getAvailableRides(): Observable<Ride[]> {
-    return this.http.get<Ride[]>(this.apiUrl + '/available');
+    return this.http.get<Ride[]>(this.apiUrl).pipe(
+      map((rides) => rides.filter((ride) => !ride.motoristaId))
+    );
   }
 
   acceptRide(rideId: number, motoristaId: number): Observable<Ride> {
